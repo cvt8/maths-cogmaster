@@ -1,5 +1,5 @@
 \documentclass[french,12pt,a4paper]{book}
-\usepackage[a4paper,left=1.5 cm,right=1.5cm,top=1.5cm,bottom=1.8cm]{geometry}
+\usepackage[a4paper,left=1.5 cm,right=1.5cm,top=1.8cm,bottom=1.8cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -331,7 +331,7 @@ $$f'(x) +  b(x)g(f(x)) + c(x) = 0$$
 \end{rem}
 
 \begin{theo}[Cauchy - Lipschitz]
-With the given initial condition $f(x) = f_x$, and assuming that $g$ is a locally lipschitz function, it exists and there is a unique solution $f$ to the differential equations.
+With the given initial condition $f(x_0) = f_{x_0}$, and assuming that $g$ is a locally lipschitz function, it exists and there is a unique solution $f$ to the differential equations.
 \end{theo}
 
 \begin{proof}
@@ -400,7 +400,14 @@ To solve a differential equation, one need first to solve its homegenious associ
 f'(x) +  b(x)g(f(x)) =0
 \end{equation}
 
-This can be done, by integrating on the two sides the differential equation. 
+This can be done, by integrating on the two sides the differential equation:
+
+\begin{prop}
+The set of solutions to the homogeneous linear equation $a(t)x' + b(t)x = 0$, 
+over the interval \(I\), with a certain \(t_0\) in \(I\) such that \(x(t_0) = x_0\), is defined for all \(t \in I\) by
+\[x(t) = x_0 e^{F(t)},\]
+where $F(t) = - \int_{t_0}^{t} \frac{b(s)}{a(s)} \, ds$.
+\end{prop}
 
 \begin{exo}
 Integrate the equation $\frac{dv}{dt} = bv^2$ with $v(t = 0) = v_0$. Plot the curve of $v(t)$.
@@ -421,20 +428,26 @@ can be fully determined without initial conditions. It can be shown to be of the
 as the second member: if the second member is a sinusoidal function, a particular solution of the type
 type solution. To determine the particular solution, we assume that it is of the same form as the second member.
 as the second member, keeping as much generality as possible. This general form is then reinfected into
-the differential equation under study to determine any undetermined parameters.
-\item and the solution $e^{kt}$ of the associated homogeneous linear equation.
+the differential equation under study to determine any undetermined parameters;
+\item And the solution $e^{kt}$ of the associated homogeneous linear equation.
 \end{enumerate}
+
+\begin{prop}
+The general solution of the equation $a(t)x' + b(t)x = d(t)$,
+over the interval \(I\) with a certain \(t_0\) in \(I\) such that \(x(t_0) = x_0\) is given by:
+\[x(t) = \exp \left( - \int_{t_0}^{t} \frac{b(s)}{a(s)} \, ds \right) \left( x_0 + \int_{t_0}^{t} \frac{d(s)}{a(s)} \exp \left( \int_{s}^{t_0} \frac{b(\sigma)}{a(\sigma)} \, d\sigma \right) \, ds \right).\]
+\end{prop}
 
 
 \begin{rem}
-The Cauchy theorem gives a general method for solving first order differential equations:
+The Cauchy theorem gives a general method for solving first order differential equations. This method is called the variation of the constant method:
 
 
 Consider the first-order linear ordinary differential equation:
 \[ \frac{dy}{dt} + p(t)y = g(t) \]
 
 Let find the Integrating Factor \( \mu(t) \)
-\[ \mu(t) = e^{\int p(t) dt} \]
+\[ \mu(t) = e^{- \int p(t) dt} \]
 
 Then, multiply Both Sides by the Integrating Factor
 \[ \mu(t) \frac{dy}{dt} + p(t)\mu(t)y = \mu(t)g(t) \]
